@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timesheet.Api", "Timesheet.Api\Timesheet.Api.csproj", "{34486A07-859A-48D5-AFDC-643F14C97E02}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timesheet.Tests", "Timesheet.Tests\Timesheet.Tests.csproj", "{810AA2D0-2AC8-4DF0-954C-999237AF5A90}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{34486A07-859A-48D5-AFDC-643F14C97E02}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34486A07-859A-48D5-AFDC-643F14C97E02}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34486A07-859A-48D5-AFDC-643F14C97E02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{810AA2D0-2AC8-4DF0-954C-999237AF5A90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{810AA2D0-2AC8-4DF0-954C-999237AF5A90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{810AA2D0-2AC8-4DF0-954C-999237AF5A90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{810AA2D0-2AC8-4DF0-954C-999237AF5A90}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

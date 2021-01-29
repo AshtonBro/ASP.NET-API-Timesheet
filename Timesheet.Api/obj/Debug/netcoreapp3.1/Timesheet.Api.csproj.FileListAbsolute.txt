@@ -7,7 +7,6 @@ D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Api\bin\Debug\netco
 D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Api\bin\Debug\netcoreapp3.1\Timesheet.Api.runtimeconfig.dev.json
 D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Api\bin\Debug\netcoreapp3.1\Timesheet.Api.dll
 D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Api\bin\Debug\netcoreapp3.1\Timesheet.Api.pdb
-D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Api\obj\Debug\netcoreapp3.1\Timesheet.Api.csprojAssemblyReference.cache
 D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Api\obj\Debug\netcoreapp3.1\Timesheet.Api.AssemblyInfoInputs.cache
 D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Api\obj\Debug\netcoreapp3.1\Timesheet.Api.AssemblyInfo.cs
 D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Api\obj\Debug\netcoreapp3.1\Timesheet.Api.csproj.CoreCompileInputs.cache
