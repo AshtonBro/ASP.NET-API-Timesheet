@@ -1,6 +1,6 @@
 using System;
 
-namespace Timesheet.Api
+namespace Timesheet.Api.Models
 {
     public class WeatherForecast
     {
