@@ -17,3 +17,4 @@ D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Api\obj\Debug\netco
 D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Api\obj\Debug\netcoreapp3.1\Timesheet.Api.dll
 D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Api\obj\Debug\netcoreapp3.1\Timesheet.Api.pdb
 D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Api\obj\Debug\netcoreapp3.1\Timesheet.Api.genruntimeconfig.cache
+D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Api\obj\Debug\netcoreapp3.1\Timesheet.Api.csprojAssemblyReference.cache

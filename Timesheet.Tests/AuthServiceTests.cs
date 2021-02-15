@@ -25,6 +25,30 @@ namespace Timesheet.Tests
 
             // assert
 
+            Assert.IsNotNull(UserSession.Sessions);
+            Assert.IsNotEmpty(UserSession.Sessions);
+            Assert.IsTrue(UserSession.Sessions.Contains(lastName));
+
+            Assert.IsTrue(result);
+        }
+
+        [Test]
+        public void Login_Twice_ShouldReturnTrue()
+        {
+            // arrange
+            var lastName = "Иванов";
+
+            var service = new AuthService();
+
+            // act
+
+            _ = service.Login(lastName);
+            var result = service.Login(lastName);
+            // assert
+            Assert.IsNotNull(UserSession.Sessions);
+            Assert.IsNotEmpty(UserSession.Sessions);
+            Assert.IsTrue(UserSession.Sessions.Contains(lastName));
+
             Assert.IsTrue(result);
         }
 

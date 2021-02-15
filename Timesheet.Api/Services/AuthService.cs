@@ -25,7 +25,14 @@ namespace Timesheet.Api.Services
             {
                 return false;
             }
-            return Employee.Contains(lastName);
+
+            var isEmployeeExist = Employee.Contains(lastName);
+            if (isEmployeeExist)
+            {
+                UserSession.Sessions.Add(lastName);
+            }
+
+            return isEmployeeExist;
         }
     }
 }

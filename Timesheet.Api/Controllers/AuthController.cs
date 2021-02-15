@@ -9,7 +9,7 @@ namespace Timesheet.Api.Controllers
     public class AuthController : ControllerBase
     {
         [HttpPost]
-        public ActionResult<bool> Test(LoginRequest request)
+        public ActionResult<bool> Login(LoginRequest request)
         {
             var authService = new AuthService();
 
