@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Timesheet.Api.Services
 {
-    public class AuthService
+    public class AuthService : IAuthService
     {
         public AuthService()
         {
@@ -17,11 +15,12 @@ namespace Timesheet.Api.Services
             };
         }
 
-        public List<string> Employee { get; private set; }
+        public IEnumerable<string> Employee { get; private set; }
+
 
         public bool Login(string lastName)
         {
-            if(string.IsNullOrWhiteSpace(lastName))
+            if (string.IsNullOrWhiteSpace(lastName))
             {
                 return false;
             }
@@ -34,5 +33,9 @@ namespace Timesheet.Api.Services
 
             return isEmployeeExist;
         }
+    }
+    public static class UserSession
+    {
+        public static HashSet<string> Sessions { get; set; } = new HashSet<string>();
     }
 }

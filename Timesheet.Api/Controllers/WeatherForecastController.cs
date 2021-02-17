@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Timesheet.Api.Models;
+using Timesheet.Api.ResourceModels;
 
 namespace Timesheet.Api.Controllers
 {
@@ -22,6 +22,8 @@ namespace Timesheet.Api.Controllers
         {
             _logger = logger;
         }
+
+        public ILogger<WeatherForecastController> Logger => _logger;
 
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
