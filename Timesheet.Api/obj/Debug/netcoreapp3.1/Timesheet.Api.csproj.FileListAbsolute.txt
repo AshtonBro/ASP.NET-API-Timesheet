@@ -18,3 +18,10 @@ D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Api\obj\Debug\netco
 D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Api\obj\Debug\netcoreapp3.1\Timesheet.Api.pdb
 D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Api\obj\Debug\netcoreapp3.1\Timesheet.Api.genruntimeconfig.cache
 D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Api\obj\Debug\netcoreapp3.1\Timesheet.Api.csprojAssemblyReference.cache
+D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Api\bin\Debug\netcoreapp3.1\Timesheet.Application.dll
+D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Api\bin\Debug\netcoreapp3.1\Timesheet.DataAccess.CSV.dll
+D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Api\bin\Debug\netcoreapp3.1\Timesheet.Domain.dll
+D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Api\bin\Debug\netcoreapp3.1\Timesheet.Application.pdb
+D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Api\bin\Debug\netcoreapp3.1\Timesheet.DataAccess.CSV.pdb
+D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Api\bin\Debug\netcoreapp3.1\Timesheet.Domain.pdb
+D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Api\obj\Debug\netcoreapp3.1\Timesheet.Api.csproj.CopyComplete

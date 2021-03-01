@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Timesheet.Api\Timesheet.Api.csproj" />
+    <ProjectReference Include="..\Timesheet.Domain\Timesheet.Domain.csproj" />
   </ItemGroup>
 
 </Project>

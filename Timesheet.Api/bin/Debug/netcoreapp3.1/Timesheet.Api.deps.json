@@ -24,6 +24,8 @@
     ".NETCoreApp,Version=v3.1": {
       "Timesheet.Api/1.0.0": {
         "dependencies": {
+          "Timesheet.Application": "1.0.0",
+          "Timesheet.DataAccess.CSV": "1.0.0",
           "Microsoft.AspNetCore.Antiforgery": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "3.1.0.0",
@@ -312,6 +314,36 @@
         },
         "compile": {
           "Timesheet.Api.dll": {}
+        }
+      },
+      "Timesheet.Application/1.0.0": {
+        "dependencies": {
+          "Timesheet.Domain": "1.0.0"
+        },
+        "runtime": {
+          "Timesheet.Application.dll": {}
+        },
+        "compile": {
+          "Timesheet.Application.dll": {}
+        }
+      },
+      "Timesheet.DataAccess.CSV/1.0.0": {
+        "dependencies": {
+          "Timesheet.Domain": "1.0.0"
+        },
+        "runtime": {
+          "Timesheet.DataAccess.CSV.dll": {}
+        },
+        "compile": {
+          "Timesheet.DataAccess.CSV.dll": {}
+        }
+      },
+      "Timesheet.Domain/1.0.0": {
+        "runtime": {
+          "Timesheet.Domain.dll": {}
+        },
+        "compile": {
+          "Timesheet.Domain.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery/3.1.0.0": {
@@ -2010,6 +2042,21 @@
   },
   "libraries": {
     "Timesheet.Api/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Timesheet.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Timesheet.DataAccess.CSV/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Timesheet.Domain/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

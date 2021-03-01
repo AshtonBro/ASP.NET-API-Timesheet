@@ -1,0 +1,12 @@
+D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.DataAccess.CSV\bin\Debug\netstandard2.0\Timesheet.DataAccess.CSV.deps.json
+D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.DataAccess.CSV\bin\Debug\netstandard2.0\Timesheet.DataAccess.CSV.dll
+D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.DataAccess.CSV\bin\Debug\netstandard2.0\Timesheet.DataAccess.CSV.pdb
+D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.DataAccess.CSV\bin\Debug\netstandard2.0\Timesheet.Domain.dll
+D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.DataAccess.CSV\bin\Debug\netstandard2.0\Timesheet.Domain.pdb
+D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.DataAccess.CSV\obj\Debug\netstandard2.0\Timesheet.DataAccess.CSV.csprojAssemblyReference.cache
+D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.DataAccess.CSV\obj\Debug\netstandard2.0\Timesheet.DataAccess.CSV.AssemblyInfoInputs.cache
+D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.DataAccess.CSV\obj\Debug\netstandard2.0\Timesheet.DataAccess.CSV.AssemblyInfo.cs
+D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.DataAccess.CSV\obj\Debug\netstandard2.0\Timesheet.DataAccess.CSV.csproj.CoreCompileInputs.cache
+D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.DataAccess.CSV\obj\Debug\netstandard2.0\Timesheet.DataAccess.CSV.csproj.CopyComplete
+D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.DataAccess.CSV\obj\Debug\netstandard2.0\Timesheet.DataAccess.CSV.dll
+D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.DataAccess.CSV\obj\Debug\netstandard2.0\Timesheet.DataAccess.CSV.pdb

@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "I3XKJTg4nZCHTShKLZ1dla3/lv/7ZALVocImW8GU1gsIrhmJCWS7SHPYFzHao0zaEE128RI0KXzCWiW9X/3ilw==",
+  "success": true,
+  "projectFilePath": "D:\\Web-developer\\3. С#\\VS_source\\Ashton.Timesheet\\Timesheet.DataAccess.CSV\\Timesheet.DataAccess.CSV.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Evgenii Solovev\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\Evgenii Solovev\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

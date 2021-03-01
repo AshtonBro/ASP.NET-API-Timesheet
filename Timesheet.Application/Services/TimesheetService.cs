@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using Timesheet.Api.Models;
+﻿using System.Collections.Generic;
+using Timesheet.Domain;
+using Timesheet.Domain.Models;
 
-namespace Timesheet.Api.Services
+namespace Timesheet.Application.Services
 {
-    public class TimesheetService
+    public class TimesheetService : ITimeSheetService
     {
         public bool TrackTime(TimeLog timelog)
         {
             bool isValid = timelog.WorkHours > 0 && timelog.WorkHours <= 24
-                && !string.IsNullOrWhiteSpace(timelog.LastName);
+            && !string.IsNullOrWhiteSpace(timelog.LastName);
 
             isValid = isValid && UserSession.Sessions.Contains(timelog.LastName);
 

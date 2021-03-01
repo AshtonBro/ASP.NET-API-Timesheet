@@ -108,3 +108,9 @@ D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Tests\bin\Debug\net
 D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Tests\bin\Debug\netcoreapp3.1\Microsoft.DotNet.InternalAbstractions.dll
 D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Tests\bin\Debug\netcoreapp3.1\System.Xml.XPath.XmlDocument.dll
 D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Tests\obj\Debug\netcoreapp3.1\Timesheet.Tests.csproj.CoreCompileInputs.cache
+D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Tests\bin\Debug\netcoreapp3.1\Timesheet.Application.dll
+D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Tests\bin\Debug\netcoreapp3.1\Timesheet.DataAccess.CSV.dll
+D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Tests\bin\Debug\netcoreapp3.1\Timesheet.Domain.dll
+D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Tests\bin\Debug\netcoreapp3.1\Timesheet.Domain.pdb
+D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Tests\bin\Debug\netcoreapp3.1\Timesheet.Application.pdb
+D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Tests\bin\Debug\netcoreapp3.1\Timesheet.DataAccess.CSV.pdb

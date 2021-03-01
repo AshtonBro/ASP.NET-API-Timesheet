@@ -1,11 +1,67 @@
 {
   "version": 3,
   "targets": {
-    ".NETCoreApp,Version=v3.1": {}
+    ".NETCoreApp,Version=v3.1": {
+      "Timesheet.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Timesheet.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Timesheet.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Timesheet.Application.dll": {}
+        }
+      },
+      "Timesheet.DataAccess.CSV/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Timesheet.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Timesheet.DataAccess.CSV.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Timesheet.DataAccess.CSV.dll": {}
+        }
+      },
+      "Timesheet.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/Timesheet.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Timesheet.Domain.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Timesheet.Application/1.0.0": {
+      "type": "project",
+      "path": "../Timesheet.Application/Timesheet.Application.csproj",
+      "msbuildProject": "../Timesheet.Application/Timesheet.Application.csproj"
+    },
+    "Timesheet.DataAccess.CSV/1.0.0": {
+      "type": "project",
+      "path": "../Timesheet.DataAccess.CSV/Timesheet.DataAccess.CSV.csproj",
+      "msbuildProject": "../Timesheet.DataAccess.CSV/Timesheet.DataAccess.CSV.csproj"
+    },
+    "Timesheet.Domain/1.0.0": {
+      "type": "project",
+      "path": "../Timesheet.Domain/Timesheet.Domain.csproj",
+      "msbuildProject": "../Timesheet.Domain/Timesheet.Domain.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v3.1": []
+    ".NETCoreApp,Version=v3.1": [
+      "Timesheet.Application >= 1.0.0",
+      "Timesheet.DataAccess.CSV >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Evgenii Solovev\\.nuget\\packages\\": {}
@@ -32,7 +88,14 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Web-developer\\3. С#\\VS_source\\Ashton.Timesheet\\Timesheet.Application\\Timesheet.Application.csproj": {
+              "projectPath": "D:\\Web-developer\\3. С#\\VS_source\\Ashton.Timesheet\\Timesheet.Application\\Timesheet.Application.csproj"
+            },
+            "D:\\Web-developer\\3. С#\\VS_source\\Ashton.Timesheet\\Timesheet.DataAccess.CSV\\Timesheet.DataAccess.CSV.csproj": {
+              "projectPath": "D:\\Web-developer\\3. С#\\VS_source\\Ashton.Timesheet\\Timesheet.DataAccess.CSV\\Timesheet.DataAccess.CSV.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

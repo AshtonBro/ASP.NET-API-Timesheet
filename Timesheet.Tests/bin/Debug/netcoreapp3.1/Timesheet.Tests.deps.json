@@ -12,6 +12,7 @@
           "NUnit": "3.13.0",
           "NUnit3TestAdapter": "3.17.0",
           "Timesheet.Api": "1.0.0",
+          "Timesheet.Domain": "1.0.0",
           "coverlet.collector": "1.2.0",
           "xunit": "2.4.0",
           "xunit.runner.visualstudio": "2.4.0"
@@ -928,8 +929,33 @@
         }
       },
       "Timesheet.Api/1.0.0": {
+        "dependencies": {
+          "Timesheet.Application": "1.0.0",
+          "Timesheet.DataAccess.CSV": "1.0.0"
+        },
         "runtime": {
           "Timesheet.Api.dll": {}
+        }
+      },
+      "Timesheet.Application/1.0.0": {
+        "dependencies": {
+          "Timesheet.Domain": "1.0.0"
+        },
+        "runtime": {
+          "Timesheet.Application.dll": {}
+        }
+      },
+      "Timesheet.DataAccess.CSV/1.0.0": {
+        "dependencies": {
+          "Timesheet.Domain": "1.0.0"
+        },
+        "runtime": {
+          "Timesheet.DataAccess.CSV.dll": {}
+        }
+      },
+      "Timesheet.Domain/1.0.0": {
+        "runtime": {
+          "Timesheet.Domain.dll": {}
         }
       }
     }
@@ -1445,6 +1471,21 @@
       "hashPath": "xunit.runner.visualstudio.2.4.0.nupkg.sha512"
     },
     "Timesheet.Api/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Timesheet.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Timesheet.DataAccess.CSV/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Timesheet.Domain/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

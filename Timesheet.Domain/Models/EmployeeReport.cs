@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Timesheet.Api.Models
+namespace Timesheet.Domain.Models
 {
     /// <summary>
     /// Отчёт по сотруднику
