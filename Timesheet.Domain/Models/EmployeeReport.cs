@@ -12,7 +12,7 @@ namespace Timesheet.Domain.Models
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 
-        public IEnumerable<TimeLog> TimeLogs { get; set; }
+        public List<TimeLog> TimeLogs { get; set; }
 
 
         public int TotalHours { get; set; }
