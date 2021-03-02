@@ -14,7 +14,6 @@ namespace Timesheet.Domain.Models
 
         public List<TimeLog> TimeLogs { get; set; }
 
-
         public int TotalHours { get; set; }
         public decimal Bill { get; set; }
     }
