@@ -7,6 +7,7 @@ namespace Timesheet.Application.Services
 {
     public class ReportService
     {
+        private const decimal MAX_WORKING_HOURS_PER_MONTH = 160m;
         private readonly ITimesheetRepository _timesheetRepository;
         private readonly IEmployeeRepository _employeeRepository;
 
@@ -22,13 +23,8 @@ namespace Timesheet.Application.Services
             var employee = _employeeRepository.GetEmployee(lastName);
             var timeLogs =_timesheetRepository.GetTimesLog(employee.LastName);
 
-            //foreach (var log in timeLogs)
-            //{
-            //    hours += log.WorkHours;
-            //}
-
             var hours = timeLogs.Sum(x => x.WorkHours);
-            var bill = (hours / 160m) * employee.Salary;
+            var bill = (hours / MAX_WORKING_HOURS_PER_MONTH) * employee.Salary;
 
             return new EmployeeReport
             {
