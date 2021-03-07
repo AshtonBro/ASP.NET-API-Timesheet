@@ -17,7 +17,7 @@ namespace Timesheet.Tests
             var employeeRepositoryMock = new Mock<IEmployeeRepository>();
             var expectedLastName = "Иванов";
             var expectedTotal = 8750m; // (8+8+4) / 160 * 70000
-            
+
             timesheetRepositoryMock
                 .Setup(x => x.GetTimesLog(It.Is<string>(y => y == expectedLastName)))
                 .Returns(() => new[]
@@ -49,10 +49,75 @@ namespace Timesheet.Tests
             employeeRepositoryMock
                 .Setup(x => x.GetEmployee(It.Is<string>(y => y == expectedLastName)))
                 .Returns(() => new StaffEmployee
+                {
+                    LastName = expectedLastName,
+                    Salary = 70000
+                }
+                )
+                .Verifiable();
+
+            var service = new ReportService(timesheetRepositoryMock.Object, employeeRepositoryMock.Object);
+
+
+            // act
+            var result = service.GetEmployeeReport(expectedLastName);
+
+            // assert
+            timesheetRepositoryMock.VerifyAll();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(expectedLastName, result.LastName);
+
+            Assert.IsNotNull(result.TimeLogs);
+            Assert.IsNotEmpty(result.TimeLogs);
+
+            Assert.AreEqual(expectedTotal, result.Bill);
+        }
+
+        [Test]
+        public void GetEmployeeReport_ShouldReturnReportPerSeveralMonth()
+        {
+            // arrange
+            var timesheetRepositoryMock = new Mock<ITimesheetRepository>();
+            var employeeRepositoryMock = new Mock<IEmployeeRepository>();
+            var expectedLastName = "Иванов";
+            var expectedTotal = 135750m; // (8+8+4) / 160 * 70000
+
+            timesheetRepositoryMock
+                .Setup(x => x.GetTimesLog(It.Is<string>(y => y == expectedLastName)))
+                .Returns(() =>
+                {
+                    TimeLog[] timeLogs = new TimeLog[35];
+                    DateTime dateTime = new DateTime(2020, 11, 1);
+                    timeLogs[0] = new TimeLog
                     {
                         LastName = expectedLastName,
-                        Salary = 70000
+                        Comment = Guid.NewGuid().ToString(),
+                        Date = dateTime,
+                        WorkHours = 9
+                    };
+                    for (int i = 1; i < timeLogs.Length; i++)
+                    {
+                        dateTime = dateTime.AddDays(1);
+                        timeLogs[i] = new TimeLog
+                        {
+                            LastName = expectedLastName,
+                            Comment = Guid.NewGuid().ToString(),
+                            Date = dateTime,
+                            WorkHours = 8
+                        };
                     }
+                    return timeLogs;
+                })
+                .Verifiable();
+
+            employeeRepositoryMock
+                .Setup(x => x.GetEmployee(It.Is<string>(y => y == expectedLastName)))
+                .Returns(() => new StaffEmployee
+                {
+                    LastName = expectedLastName,
+                    Salary = 60000
+                }
                 )
                 .Verifiable();
 
