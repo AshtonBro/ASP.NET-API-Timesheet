@@ -245,7 +245,7 @@ namespace Timesheet.Tests
             var timesheetRepositoryMock = new Mock<ITimesheetRepository>();
             var employeeRepositoryMock = new Mock<IEmployeeRepository>();
             var expectedLastName = "Иванов";
-            var expectedTotal = 8m / 160m * 60000m + 2m / 160m * 60000m * 2; // (8+8+4) / 160 * 70000
+            var expectedTotal = 8m / 160m * 60000m + 4m / 160m * 60000m * 2; // (8+8+4) / 160 * 70000
 
             timesheetRepositoryMock
                 .Setup(x => x.GetTimesLog(It.Is<string>(y => y == expectedLastName)))
