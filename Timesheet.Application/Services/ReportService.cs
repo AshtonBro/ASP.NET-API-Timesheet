@@ -23,9 +23,19 @@ namespace Timesheet.Application.Services
             var employee = _employeeRepository.GetEmployee(lastName);
             var timeLogs = _timesheetRepository.GetTimesLog(employee.LastName);
 
+            if (timeLogs == null || timeLogs.Length == 0)
+            {
+                return new EmployeeReport
+                {
+                    LastName = employee.LastName
+                };
+            }
+
+
             var monthHours = timeLogs[0].WorkHours;
             var billPerHour = employee.Salary / MAX_WORKING_HOURS_PER_MONTH;
             var bill = monthHours * billPerHour;
+            var totalHourse = timeLogs.Sum(x => x.WorkHours);
 
             for (int i = 1; i < timeLogs.Length; i++)
             {
@@ -42,7 +52,7 @@ namespace Timesheet.Application.Services
                 {
                     bill += timeLogs[i].WorkHours * billPerHour;
                 }
-                else if (monthHours < 168)
+                else if (monthHours < (MAX_WORKING_HOURS_PER_MONTH + 8))
                 {
                     var overWorkHours = monthHours - MAX_WORKING_HOURS_PER_MONTH;
                     var simpleWorkHours = dayHours - overWorkHours;
@@ -59,7 +69,8 @@ namespace Timesheet.Application.Services
             {
                 LastName = employee.LastName,
                 TimeLogs = timeLogs.ToList(),
-                Bill = bill
+                Bill = bill,
+                TotalHours = totalHourse
             };
         }
     }
