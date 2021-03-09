@@ -83,36 +83,8 @@ namespace Timesheet.Tests
             var timesheetRepositoryMock = new Mock<ITimesheetRepository>();
             var employeeRepositoryMock = new Mock<IEmployeeRepository>();
             var expectedLastName = "Иванов";
-            var expectedTotal = 135750m; // (8+8+4) / 160 * 70000
+            var expectedTotal = 105750m; // 35 * 8 * 375 + 1 * 375 * 2;
             var expectedTotalHourse = 281; // (8+8+4) / 160 * 70000
-
-            timesheetRepositoryMock
-                .Setup(x => x.GetTimesLog(It.Is<string>(y => y == expectedLastName)))
-                .Returns(() =>
-                {
-                    TimeLog[] timeLogs = new TimeLog[35];
-                    DateTime dateTime = new DateTime(2020, 11, 1);
-                    timeLogs[0] = new TimeLog
-                    {
-                        LastName = expectedLastName,
-                        Comment = Guid.NewGuid().ToString(),
-                        Date = dateTime,
-                        WorkHours = 9
-                    };
-                    for (int i = 1; i < timeLogs.Length; i++)
-                    {
-                        dateTime = dateTime.AddDays(1);
-                        timeLogs[i] = new TimeLog
-                        {
-                            LastName = expectedLastName,
-                            Comment = Guid.NewGuid().ToString(),
-                            Date = dateTime,
-                            WorkHours = 8
-                        };
-                    }
-                    return timeLogs;
-                })
-                .Verifiable();
 
             employeeRepositoryMock
                 .Setup(x => x.GetEmployee(It.Is<string>(y => y == expectedLastName)))
@@ -123,6 +95,34 @@ namespace Timesheet.Tests
                 }
                 )
                 .Verifiable();
+
+            timesheetRepositoryMock
+               .Setup(x => x.GetTimesLog(It.Is<string>(y => y == expectedLastName)))
+               .Returns(() =>
+               {
+                   TimeLog[] timeLogs = new TimeLog[35];
+                   DateTime dateTime = new DateTime(2020, 11, 1);
+                   timeLogs[0] = new TimeLog
+                   {
+                       LastName = expectedLastName,
+                       Comment = Guid.NewGuid().ToString(),
+                       Date = dateTime,
+                       WorkHours = 9
+                   };
+                   for (int i = 1; i < timeLogs.Length; i++)
+                   {
+                       dateTime = dateTime.AddDays(1);
+                       timeLogs[i] = new TimeLog
+                       {
+                           LastName = expectedLastName,
+                           Comment = Guid.NewGuid().ToString(),
+                           Date = dateTime,
+                           WorkHours = 8
+                       };
+                   }
+                   return timeLogs;
+               })
+               .Verifiable();
 
             var service = new ReportService(timesheetRepositoryMock.Object, employeeRepositoryMock.Object);
 

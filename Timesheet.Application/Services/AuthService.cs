@@ -18,7 +18,6 @@ namespace Timesheet.Application.Services
 
         public IEnumerable<string> Employee { get; private set; }
 
-
         public bool Login(string lastName)
         {
             if (string.IsNullOrWhiteSpace(lastName))

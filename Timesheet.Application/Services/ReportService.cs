@@ -8,6 +8,7 @@ namespace Timesheet.Application.Services
     public class ReportService
     {
         private const decimal MAX_WORKING_HOURS_PER_MONTH = 160m;
+        private const decimal MAX_WORKING_HOURS_PER_DAY = 8;
         private readonly ITimesheetRepository _timesheetRepository;
         private readonly IEmployeeRepository _employeeRepository;
 
@@ -31,37 +32,24 @@ namespace Timesheet.Application.Services
                 };
             }
 
-
-            var monthHours = timeLogs[0].WorkHours;
-            var billPerHour = employee.Salary / MAX_WORKING_HOURS_PER_MONTH;
-            var bill = monthHours * billPerHour;
             var totalHourse = timeLogs.Sum(x => x.WorkHours);
+            var workingHoursGroupsByDay = timeLogs.GroupBy(x => x.Date.ToShortDateString());
+            decimal bill = 0;
 
-            for (int i = 1; i < timeLogs.Length; i++)
+            foreach (var workintLogsPerDay in workingHoursGroupsByDay)
             {
-                var dayHours = timeLogs[i].WorkHours;
+                var dayHours = workintLogsPerDay.Sum(x => x.WorkHours);
 
-                if (timeLogs[i].Date.Month != timeLogs[i - 1].Date.Month)
+                if(dayHours > MAX_WORKING_HOURS_PER_DAY)
                 {
-                    monthHours = 0;
-                }
+                    var overtime = dayHours - MAX_WORKING_HOURS_PER_DAY;
 
-                monthHours += dayHours;
-
-                if (monthHours <= MAX_WORKING_HOURS_PER_MONTH)
-                {
-                    bill += timeLogs[i].WorkHours * billPerHour;
-                }
-                else if (monthHours < (MAX_WORKING_HOURS_PER_MONTH + 8))
-                {
-                    var overWorkHours = monthHours - MAX_WORKING_HOURS_PER_MONTH;
-                    var simpleWorkHours = dayHours - overWorkHours;
-                    bill += simpleWorkHours * billPerHour;
-                    bill += overWorkHours * billPerHour * 2;
+                    bill += MAX_WORKING_HOURS_PER_DAY / MAX_WORKING_HOURS_PER_MONTH * employee.Salary;
+                    bill += overtime / MAX_WORKING_HOURS_PER_MONTH * employee.Salary * 2;
                 }
                 else
                 {
-                    bill += timeLogs[i].WorkHours * billPerHour * 2;
+                    bill += dayHours / MAX_WORKING_HOURS_PER_MONTH * employee.Salary;
                 }
             }
 
