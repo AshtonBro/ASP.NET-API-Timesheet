@@ -5,5 +5,6 @@ namespace Timesheet.Domain
     public interface ITimesheetRepository
     {
         TimeLog[] GetTimesLog(string lastName);
+        void Add(TimeLog timelog);
     }
 }

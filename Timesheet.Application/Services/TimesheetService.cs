@@ -1,11 +1,15 @@
-﻿using System.Collections.Generic;
-using Timesheet.Domain;
+﻿using Timesheet.Domain;
 using Timesheet.Domain.Models;
 
 namespace Timesheet.Application.Services
 {
     public class TimesheetService : ITimeSheetService
     {
+        private readonly ITimesheetRepository _timesheetRepository;
+        public TimesheetService(ITimesheetRepository timesheetRepository)
+        {
+            _timesheetRepository = timesheetRepository;
+        }
         public bool TrackTime(TimeLog timelog)
         {
             bool isValid = timelog.WorkHours > 0 && timelog.WorkHours <= 24
@@ -18,14 +22,9 @@ namespace Timesheet.Application.Services
                 return false;
             }
 
-            Timesheet.TimeLogs.Add(timelog);
+            _timesheetRepository.Add(timelog);
 
             return true;
         }
-    }
-
-    public static class Timesheet
-    {
-        public static List<TimeLog> TimeLogs { get; set; } = new List<TimeLog>();
     }
 }
