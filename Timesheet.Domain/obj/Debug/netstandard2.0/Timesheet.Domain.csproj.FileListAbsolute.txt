@@ -1,7 +1,6 @@
 D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Domain\bin\Debug\netstandard2.0\Timesheet.Domain.deps.json
 D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Domain\bin\Debug\netstandard2.0\Timesheet.Domain.dll
 D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Domain\bin\Debug\netstandard2.0\Timesheet.Domain.pdb
-D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Domain\obj\Debug\netstandard2.0\Timesheet.Domain.csprojAssemblyReference.cache
 D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Domain\obj\Debug\netstandard2.0\Timesheet.Domain.AssemblyInfoInputs.cache
 D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Domain\obj\Debug\netstandard2.0\Timesheet.Domain.AssemblyInfo.cs
 D:\Web-developer\3. С#\VS_source\Ashton.Timesheet\Timesheet.Domain\obj\Debug\netstandard2.0\Timesheet.Domain.csproj.CoreCompileInputs.cache

@@ -2,7 +2,7 @@
 
 namespace Timesheet.Domain
 {
-    public interface ITimeSheetService
+    public interface ITimesheetService
     {
         bool TrackTime(TimeLog timelog);
     }

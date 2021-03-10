@@ -3,7 +3,7 @@ using Timesheet.Domain.Models;
 
 namespace Timesheet.Application.Services
 {
-    public class TimesheetService : ITimeSheetService
+    public class TimesheetService : ITimesheetService
     {
         private readonly ITimesheetRepository _timesheetRepository;
         public TimesheetService(ITimesheetRepository timesheetRepository)

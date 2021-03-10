@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="TimesheetRepository.cs~RFc3e3b38.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Timesheet.Domain\Timesheet.Domain.csproj" />
   </ItemGroup>
 
