@@ -8,18 +8,18 @@ namespace Timesheet.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TimesheetController : ControllerBase
+    public class TimesheetController : Controller
     {
-        public readonly ITimesheetService _timesheetService;
+        private readonly ITimesheetService _timesheetService;
         public TimesheetController(ITimesheetService timesheetService)
         {
             _timesheetService = timesheetService;
         }
 
         [HttpPost]
-        public ActionResult<bool> SendLogs(TimeLog timeLog)
+        public ActionResult<bool> TrackTime(TimeLog timeLog)
         {
-            return _timesheetService.TrackTime(timeLog);
+            return Ok(_timesheetService.TrackTime(timeLog));
         }
     }
 }

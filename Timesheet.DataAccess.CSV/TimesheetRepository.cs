@@ -8,21 +8,21 @@ namespace Timesheet.DataAccess.CSV
 {
     public class TimesheetRepository : ITimesheetRepository
     {
-        private const string FILE_PATH = "..\\Timesheet.DataAccess.CSV\\Data\\timesheet.csv";
-        private const char DELIMETER = ';';
+        private const string _path = "\\timesheet.csv";
+        private const char _delimeter = ';';
         public void Add(TimeLog timeLog)
         {
-            var dataRow = $"{timeLog.Comment}{DELIMETER}" +
-                $"{timeLog.Date}{DELIMETER}" +
-                $"{timeLog.LastName}{DELIMETER}" +
-                $"{timeLog.WorkHours}\n";
+            var dataRow = $"{timeLog.Comment}{_delimeter}" +
+                 $"{timeLog.Date}{_delimeter}" +
+                 $"{timeLog.LastName}{_delimeter}" +
+                 $"{timeLog.WorkHours}\n";
 
-            File.AppendAllText(FILE_PATH, dataRow);
+            File.AppendAllText(_path, dataRow);
         }
 
         public TimeLog[] GetTimesLog(string lastName)
         {
-            var data = File.ReadAllText(FILE_PATH);
+            var data = File.ReadAllText(_path);
 
             var timeLogs = new List<TimeLog>();
 
@@ -30,7 +30,7 @@ namespace Timesheet.DataAccess.CSV
             {
                 var timeLog = new TimeLog();
 
-                var dataMembers = dataRow.Split(DELIMETER);
+                var dataMembers = dataRow.Split(_delimeter);
 
                 timeLog.Comment = dataMembers[0];
                 timeLog.Date = DateTime.TryParse(dataMembers[1], out var date) ? date : new DateTime();

@@ -6,23 +6,24 @@ namespace Timesheet.Application.Services
     public class TimesheetService : ITimesheetService
     {
         private readonly ITimesheetRepository _timesheetRepository;
+
         public TimesheetService(ITimesheetRepository timesheetRepository)
         {
             _timesheetRepository = timesheetRepository;
         }
-        public bool TrackTime(TimeLog timelog)
-        {
-            bool isValid = timelog.WorkHours > 0 && timelog.WorkHours <= 24
-            && !string.IsNullOrWhiteSpace(timelog.LastName);
 
-            isValid = isValid && UserSession.Sessions.Contains(timelog.LastName);
+        public bool TrackTime(TimeLog timeLog)
+        {
+            bool isValid = timeLog.WorkHours > 0 && timeLog.WorkHours <= 24 && !string.IsNullOrWhiteSpace(timeLog.LastName);
+
+            isValid = UserSession.Sessions.Contains(timeLog.LastName) && isValid;
 
             if (!isValid)
             {
                 return false;
             }
 
-            _timesheetRepository.Add(timelog);
+            _timesheetRepository.Add(timeLog);
 
             return true;
         }
