@@ -6,6 +6,12 @@ namespace Timesheet.Application.Services
 {
     public class AuthService : IAuthService
     {
+       private readonly IEmployeeRepository _employeeRepository;
+        public AuthService(IEmployeeRepository employeeRepository)
+        {
+            _employeeRepository = employeeRepository;
+        }
+
         public AuthService()
         {
             Employee = new List<string>
@@ -25,7 +31,9 @@ namespace Timesheet.Application.Services
                 return false;
             }
 
-            var isEmployeeExist = Employee.Contains(lastName);
+            var Employee = _employeeRepository.GetEmployee(lastName);
+            var isEmployeeExist = Employee != null;
+
             if (isEmployeeExist)
             {
                 UserSession.Sessions.Add(lastName);

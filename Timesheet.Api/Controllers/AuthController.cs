@@ -9,6 +9,7 @@ namespace Timesheet.Api.Controllers
     public class AuthController : ControllerBase
     {
         public readonly IAuthService _authService;
+
         public AuthController(IAuthService authService)
         {
             _authService = authService;
