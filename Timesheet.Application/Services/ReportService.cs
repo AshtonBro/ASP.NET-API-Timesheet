@@ -5,7 +5,7 @@ using Timesheet.Domain.Models;
 
 namespace Timesheet.Application.Services
 {
-    public class ReportService
+    public class ReportService : IReportService
     {
         private const decimal MAX_WORKING_HOURS_PER_MONTH = 160m;
         private const decimal MAX_WORKING_HOURS_PER_DAY = 8;

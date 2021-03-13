@@ -39,6 +39,32 @@ namespace Timesheet.Tests
             Assert.IsTrue(result);
         }
 
+        [TestCase(null)]
+        [TestCase("")]
+        [TestCase("TestUser")]
+        public void Login_ShouldReturnFalse(string lastName)
+        {
+            //arrange
+            var employeeRepositoryMock = new Mock<IEmployeeRepository>();
+            employeeRepositoryMock.
+                Setup(x => x.GetEmployee(lastName))
+                .Returns(() => null);
+
+            var service = new AuthService(employeeRepositoryMock.Object);
+            //act
+
+            var result = service.Login(lastName);
+
+            //assert
+            if(string.IsNullOrWhiteSpace(lastName) == false)
+            employeeRepositoryMock.Verify(x => x.GetEmployee(lastName), Times.Once);
+
+            Assert.IsFalse(result);
+            Assert.IsEmpty(UserSession.Sessions);
+            Assert.IsTrue(UserSession.Sessions.Contains(lastName) == false);
+        }
+
+
         public void Login_InvokeLoginTwiceForOneLastName_ShouldReturnTrue()
         {
             //arrange
@@ -93,7 +119,6 @@ namespace Timesheet.Tests
 
             employeeRepositoryMock.
                 Setup(x => x.GetEmployee(It.Is<string>(y => y == lastName)))
-
                 .Returns(() => null);
 
             var service = new AuthService(employeeRepositoryMock.Object);

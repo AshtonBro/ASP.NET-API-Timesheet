@@ -31,8 +31,8 @@ namespace Timesheet.Application.Services
                 return false;
             }
 
-            var Employee = _employeeRepository.GetEmployee(lastName);
-            var isEmployeeExist = Employee != null;
+            var stafffEmployee = _employeeRepository.GetEmployee(lastName);
+            var isEmployeeExist = stafffEmployee != null;
 
             if (isEmployeeExist)
             {
