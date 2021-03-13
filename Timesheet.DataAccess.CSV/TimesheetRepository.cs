@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using Timesheet.Domain;
 using Timesheet.Domain.Models;
 
@@ -9,8 +8,15 @@ namespace Timesheet.DataAccess.CSV
 {
     public class TimesheetRepository : ITimesheetRepository
     {
-        private const string _path = "\\timesheet.csv";
-        private const char _delimeter = ';';
+        private readonly string _path;
+        private readonly char _delimeter;
+
+        public TimesheetRepository(CsvSettings csvSettings)
+        {
+            _delimeter = csvSettings.Delimeter;
+            _path = csvSettings.Path + "\\timesheet.csv";
+        }
+
         public void Add(TimeLog timeLog)
         {
             var dataRow = $"{timeLog.Comment}{_delimeter}" +

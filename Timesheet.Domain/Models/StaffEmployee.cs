@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Timesheet.Domain.Models
+﻿namespace Timesheet.Domain.Models
 {
     /// <summary>
     /// Сотрудник

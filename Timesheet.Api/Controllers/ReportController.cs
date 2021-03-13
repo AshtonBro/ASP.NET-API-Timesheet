@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Timesheet.Domain;
 using Timesheet.Domain.Models;
 
 namespace Timesheet.Api.Controllers
@@ -13,7 +14,6 @@ namespace Timesheet.Api.Controllers
         {
             _reportService = reportService;
         }
-
 
         [HttpGet]
         public ActionResult<EmployeeReport> Report(string lastName)

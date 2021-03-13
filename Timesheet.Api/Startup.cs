@@ -21,15 +21,16 @@ namespace Timesheet.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddTransient<IAuthService, AuthService>();
             services.AddTransient<ITimesheetRepository, TimesheetRepository>();
-            services.AddTransient<IEmployeeRepository, EmployeeRepository>();
             services.AddTransient<ITimesheetService, TimesheetService>();
-            services.AddControllers();
+            services.AddTransient<IEmployeeRepository, EmployeeRepository>();
+            services.AddTransient<IEmployeeService, EmployeeService>();
+            services.AddTransient<IReportService, ReportService>();
 
-            //services.AddSingleton<IAuthService, AuthService>();
-            //services.AddScoped<IAuthService, AuthService>();
+            services.AddSingleton(x => new CsvSettings(';', "..\\Timesheet.DataAccess.CSV\\Data"));
+
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

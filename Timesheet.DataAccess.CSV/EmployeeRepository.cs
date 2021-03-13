@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using Timesheet.Domain;
 using Timesheet.Domain.Models;
 
@@ -9,9 +7,14 @@ namespace Timesheet.DataAccess.CSV
 {
     public class EmployeeRepository : IEmployeeRepository
     {
-        private const string _path = "\\timesheet.csv";
-        private const char _delimeter = ';';
+        private readonly string _path;
+        private readonly char _delimeter;
 
+        public EmployeeRepository(CsvSettings csvSettings)
+        {
+            _delimeter = csvSettings.Delimeter;
+            _path = csvSettings.Path + "\\employee.csv";
+        }
         public void AddEmployee(StaffEmployee staffEmployee)
         {
             var dataRow = $"{staffEmployee.LastName}{_delimeter}{staffEmployee.Salary}\n";
