@@ -27,7 +27,7 @@ namespace Timesheet.DataAccess.CSV
 
             var timeLogs = new List<TimeLog>();
 
-            foreach (var dataRow in data.Split('\n'))
+            foreach (var dataRow in data.Split(new char[] {'\n'}, StringSplitOptions.RemoveEmptyEntries))
             {
                 var timeLog = new TimeLog();
 
