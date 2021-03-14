@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using Timesheet.Domain;
 using Timesheet.Domain.Models;
 
@@ -14,7 +15,7 @@ namespace Timesheet.DataAccess.CSV
         public TimesheetRepository(CsvSettings csvSettings)
         {
             _delimeter = csvSettings.Delimeter;
-            _path = csvSettings.Path + "\\timesheet.csv";
+            _path = "\\timesheet.csv"; //csvSettings.Path + "\\timesheet.csv";
         }
 
         public void Add(TimeLog timeLog)

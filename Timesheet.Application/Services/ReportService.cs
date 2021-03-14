@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Timesheet.Domain;
 using Timesheet.Domain.Models;
 
@@ -11,7 +10,6 @@ namespace Timesheet.Application.Services
         private const decimal MAX_WORKING_HOURS_PER_DAY = 8;
         private readonly ITimesheetRepository _timesheetRepository;
         private readonly IEmployeeRepository _employeeRepository;
-
 
         public ReportService(ITimesheetRepository timesheetRepository, IEmployeeRepository employeeRepository)
         {
@@ -33,24 +31,85 @@ namespace Timesheet.Application.Services
             }
 
             var totalHourse = timeLogs.Sum(x => x.WorkHours);
-            var workingHoursGroupsByDay = timeLogs.GroupBy(x => x.Date.ToShortDateString());
             decimal bill = 0;
 
-            foreach (var workintLogsPerDay in workingHoursGroupsByDay)
+
+            switch (lastName)
             {
-                var dayHours = workintLogsPerDay.Sum(x => x.WorkHours);
-
-                if(dayHours > MAX_WORKING_HOURS_PER_DAY)
+                 //staff
+                case "Петров":
                 {
-                    var overtime = dayHours - MAX_WORKING_HOURS_PER_DAY;
+                    var workingHoursGroupsByDay = timeLogs.GroupBy(x => x.Date.ToShortDateString());
 
-                    bill += MAX_WORKING_HOURS_PER_DAY / MAX_WORKING_HOURS_PER_MONTH * employee.Salary;
-                    bill += overtime / MAX_WORKING_HOURS_PER_MONTH * employee.Salary * 2;
+                    foreach (var workintLogsPerDay in workingHoursGroupsByDay)
+                    {
+                        var dayHours = workintLogsPerDay.Sum(x => x.WorkHours);
+
+                        if (dayHours > MAX_WORKING_HOURS_PER_DAY)
+                        {
+                            var overtime = dayHours - MAX_WORKING_HOURS_PER_DAY;
+
+                            bill += MAX_WORKING_HOURS_PER_DAY / MAX_WORKING_HOURS_PER_MONTH * employee.Salary;
+                            bill += overtime / MAX_WORKING_HOURS_PER_MONTH * employee.Salary * 2;
+                        }
+                        else
+                        {
+                            bill += dayHours / MAX_WORKING_HOURS_PER_MONTH * employee.Salary;
+                        }
+                    }
+                    break;
                 }
-                else
+
+                //manager
+                case "Иванов":
                 {
-                    bill += dayHours / MAX_WORKING_HOURS_PER_MONTH * employee.Salary;
+                    var workingHoursGroupsByDay = timeLogs.GroupBy(x => x.Date.ToShortDateString());
+
+                    foreach (var workintLogsPerDay in workingHoursGroupsByDay)
+                    {
+                        var dayHours = workintLogsPerDay.Sum(x => x.WorkHours);
+
+                        if (dayHours > MAX_WORKING_HOURS_PER_DAY)
+                        {
+                            var overtime = dayHours - MAX_WORKING_HOURS_PER_DAY;
+
+                            bill += MAX_WORKING_HOURS_PER_DAY / MAX_WORKING_HOURS_PER_MONTH * employee.Salary;
+                            bill += overtime / MAX_WORKING_HOURS_PER_MONTH * employee.Salary * 2;
+                        }
+                        else
+                        {
+                            bill += dayHours / MAX_WORKING_HOURS_PER_MONTH * employee.Salary;
+                        }
+                    }
+                    break;
                 }
+
+                //Freelancer
+                case "Сидоров":
+                {
+                    var workingHoursGroupsByDay = timeLogs.GroupBy(x => x.Date.ToShortDateString());
+
+                    foreach (var workintLogsPerDay in workingHoursGroupsByDay)
+                    {
+                        var dayHours = workintLogsPerDay.Sum(x => x.WorkHours);
+
+                        if (dayHours > MAX_WORKING_HOURS_PER_DAY)
+                        {
+                            var overtime = dayHours - MAX_WORKING_HOURS_PER_DAY;
+
+                            bill += MAX_WORKING_HOURS_PER_DAY / MAX_WORKING_HOURS_PER_MONTH * employee.Salary;
+                            bill += overtime / MAX_WORKING_HOURS_PER_MONTH * employee.Salary * 2;
+                        }
+                        else
+                        {
+                            bill += dayHours / MAX_WORKING_HOURS_PER_MONTH * employee.Salary;
+                        }
+                    }
+                    break;
+                }
+
+                default:
+                    break;
             }
 
             return new EmployeeReport
@@ -58,7 +117,9 @@ namespace Timesheet.Application.Services
                 LastName = employee.LastName,
                 TimeLogs = timeLogs.ToList(),
                 Bill = bill,
-                TotalHours = totalHourse
+                TotalHours = totalHourse,
+                StartDate = timeLogs.Select(t => t.Date).Min(),
+                EndDate = timeLogs.Select(t => t.Date).Max()
             };
         }
     }

@@ -13,7 +13,7 @@ namespace Timesheet.DataAccess.CSV
         public EmployeeRepository(CsvSettings csvSettings)
         {
             _delimeter = csvSettings.Delimeter;
-            _path = csvSettings.Path + "\\employee.csv";
+            _path = "\\employee.csv"; //csvSettings.Path + "\\employee.csv";
         }
         public void AddEmployee(StaffEmployee staffEmployee)
         {
