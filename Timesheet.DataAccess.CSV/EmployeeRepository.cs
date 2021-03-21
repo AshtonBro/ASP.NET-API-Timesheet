@@ -15,6 +15,7 @@ namespace Timesheet.DataAccess.CSV
             _delimeter = csvSettings.Delimeter;
             _path = "\\employee.csv"; //csvSettings.Path + "\\employee.csv";
         }
+
         public void AddEmployee(StaffEmployee staffEmployee)
         {
             var dataRow = $"{staffEmployee.LastName}{_delimeter}{staffEmployee.Salary}\n";
