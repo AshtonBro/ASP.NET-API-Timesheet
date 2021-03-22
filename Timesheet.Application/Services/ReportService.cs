@@ -6,10 +6,6 @@ namespace Timesheet.Application.Services
 {
     public class ReportService : IReportService
     {
-        private const decimal MAX_WORKING_HOURS_PER_MONTH = 160;
-        private const decimal MAX_WORKING_HOURS_PER_DAY = 8;
-        private const decimal BONUS_FOR_MANAGER = 20000;
-
         private readonly ITimesheetRepository _timesheetRepository;
         private readonly IEmployeeRepository _employeeRepository;
 
