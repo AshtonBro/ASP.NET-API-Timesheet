@@ -7,40 +7,58 @@ namespace Timesheet.DataAccess.CSV
 {
     public class EmployeeRepository : IEmployeeRepository
     {
-        private readonly string _path;
         private readonly char _delimeter;
+        private readonly string _path;
 
         public EmployeeRepository(CsvSettings csvSettings)
         {
             _delimeter = csvSettings.Delimeter;
-            _path = "\\employee.csv"; //csvSettings.Path + "\\employee.csv";
+            _path = "\\employees.csv"; //csvSettings.Path + "\\employees.csv"
         }
 
-        public void AddEmployee(StaffEmployee staffEmployee)
-        {
-            var dataRow = $"{staffEmployee.LastName}{_delimeter}{staffEmployee.Salary}\n";
-
+        public void AddEmployee(Employee employee)
+        {                        
+            var dataRow = employee.GetPersonalData(_delimeter);
             File.AppendAllText(_path, dataRow);
         }
 
-        public StaffEmployee GetEmployee(string lastName)
+        public Employee GetEmployee(string lastName)
         {
             var data = File.ReadAllText(_path);
+            var dataRows = data.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            Employee employee = null;
 
-            StaffEmployee staffEmployee = null;
-
-            foreach (var dataRow in data.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries))
+            foreach (var dataRow in dataRows)
             {
                 if (dataRow.Contains(lastName))
                 {
                     var dataMembers = dataRow.Split(_delimeter);
+                    decimal salary = 0;
+                    decimal.TryParse(dataMembers[1], out salary);
+                    var position = dataMembers[2];
+                    switch (position)
+                    {
+                        case "Руководитель":
+                            decimal bonus = 0;
+                            decimal.TryParse(dataMembers[1], out bonus);
+                            employee = new ChiefEmployee(lastName, salary, bonus);
+                            break;
 
-                    staffEmployee = new StaffEmployee(dataMembers[0], decimal.TryParse(dataMembers[1], out decimal salary) ? salary : 0);
+                        case "Штатный сотрудник":
+                            employee = new StaffEmployee(lastName, salary);
+                            break;
 
+                        case "Фрилансер":
+                            employee = new FreelancerEmployee(lastName, salary);
+                            break;
+
+                        default:
+                            break; // Выбрасывать исключение?
+                    }
                     break;
                 }
             }
-            return staffEmployee;
+            return employee;
         }
     }
 }

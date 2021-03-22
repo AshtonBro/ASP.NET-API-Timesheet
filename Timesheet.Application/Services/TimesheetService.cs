@@ -1,5 +1,6 @@
 ﻿using Timesheet.Domain;
 using Timesheet.Domain.Models;
+using static Timesheet.Application.Services.AuthService;
 
 namespace Timesheet.Application.Services
 {
@@ -16,7 +17,7 @@ namespace Timesheet.Application.Services
         {
             bool isValid = timeLog.WorkHours > 0 && timeLog.WorkHours <= 24 && !string.IsNullOrWhiteSpace(timeLog.LastName);
 
-            isValid = UserSession.Sessions.Contains(timeLog.LastName) && isValid;
+            isValid = UserSessions.Sessions.Contains(timeLog.LastName) && isValid;
 
             if (!isValid)
             {

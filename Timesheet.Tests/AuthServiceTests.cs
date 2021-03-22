@@ -3,6 +3,7 @@ using NUnit.Framework;
 using Timesheet.Application.Services;
 using Timesheet.Domain;
 using Timesheet.Domain.Models;
+using static Timesheet.Application.Services.AuthService;
 
 namespace Timesheet.Tests
 {
@@ -33,9 +34,9 @@ namespace Timesheet.Tests
             //assert
             employeeRepositoryMock.VerifyAll();
 
-            Assert.IsNotNull(UserSession.Sessions);
-            Assert.IsNotEmpty(UserSession.Sessions);
-            Assert.IsTrue(UserSession.Sessions.Contains(lastName));
+            Assert.IsNotNull(UserSessions.Sessions);
+            Assert.IsNotEmpty(UserSessions.Sessions);
+            Assert.IsTrue(UserSessions.Sessions.Contains(lastName));
             Assert.IsTrue(result);
         }
 
@@ -60,8 +61,8 @@ namespace Timesheet.Tests
             employeeRepositoryMock.Verify(x => x.GetEmployee(lastName), Times.Once);
 
             Assert.IsFalse(result);
-            Assert.IsEmpty(UserSession.Sessions);
-            Assert.IsTrue(UserSession.Sessions.Contains(lastName) == false);
+            Assert.IsEmpty(UserSessions.Sessions);
+            Assert.IsTrue(UserSessions.Sessions.Contains(lastName) == false);
         }
 
 
@@ -85,9 +86,9 @@ namespace Timesheet.Tests
             //assert
             employeeRepositoryMock.VerifyAll();
 
-            Assert.IsNotNull(UserSession.Sessions);
-            Assert.IsNotEmpty(UserSession.Sessions);
-            Assert.IsTrue(UserSession.Sessions.Contains(lastName));
+            Assert.IsNotNull(UserSessions.Sessions);
+            Assert.IsNotEmpty(UserSessions.Sessions);
+            Assert.IsTrue(UserSessions.Sessions.Contains(lastName));
             Assert.IsTrue(result);
         }
 
@@ -107,8 +108,8 @@ namespace Timesheet.Tests
             employeeRepositoryMock.Verify(x => x.GetEmployee(lastName), Times.Never);
 
             Assert.IsFalse(result);
-            Assert.IsEmpty(UserSession.Sessions);
-            Assert.IsTrue(UserSession.Sessions.Contains(lastName) == false);
+            Assert.IsEmpty(UserSessions.Sessions);
+            Assert.IsTrue(UserSessions.Sessions.Contains(lastName) == false);
         }
 
         [TestCase("TestUser")]
@@ -131,7 +132,7 @@ namespace Timesheet.Tests
             employeeRepositoryMock.Verify(x => x.GetEmployee(lastName), Times.Once);
 
             Assert.IsFalse(result);
-            Assert.IsTrue(UserSession.Sessions.Contains(lastName) == false);
+            Assert.IsTrue(UserSessions.Sessions.Contains(lastName) == false);
         }
     }
 }

@@ -4,6 +4,7 @@ using System;
 using Timesheet.Application.Services;
 using Timesheet.Domain;
 using Timesheet.Domain.Models;
+using static Timesheet.Application.Services.AuthService;
 
 namespace Timesheet.Tests
 {
@@ -15,7 +16,7 @@ namespace Timesheet.Tests
             // arrange
             var expectedLastName = "TestUser";
 
-            UserSession.Sessions.Add(expectedLastName);
+            UserSessions.Sessions.Add(expectedLastName);
 
             var timeLog = new TimeLog
             {
