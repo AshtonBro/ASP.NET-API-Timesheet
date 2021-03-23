@@ -10,10 +10,17 @@ namespace Timesheet.Tests
 {
     class TimesheetServiceTests
     {
+        [SetUp]
+        public void SetUp()
+        {
+            UserSessions.Sessions.Clear();
+        }
+
         [Test]
         public void TrackTime_ShouldReturnTrue()
         {
             // arrange
+
             var expectedLastName = "TestUser";
 
             UserSessions.Sessions.Add(expectedLastName);
@@ -75,6 +82,69 @@ namespace Timesheet.Tests
             // assert
             timesheetRepositoryMock.Verify(x => x.Add(timeLog), Times.Never);
             Assert.IsFalse(result);
+        }
+
+        [Test]
+        public void TrackTime_Freelancer_ShouldReturnTrue()
+        {
+            // arrange
+            var expectedLastName = "TestUser";
+
+            UserSessions.Sessions.Add(expectedLastName);
+
+            var timeLog = new TimeLog
+            {
+                Date = DateTime.Now,
+                WorkHours = 2,
+                LastName = expectedLastName,
+                Comment = Guid.NewGuid().ToString()
+            };
+
+            var timesheetRepositoryMock = new Mock<ITimesheetRepository>();
+
+            var service = new TimesheetService(timesheetRepositoryMock.Object);
+            // act
+
+            var result = service.TrackTime(timeLog);
+
+            // assert
+            var lowerBorderDate = DateTime.Now.AddDays(-2);
+
+            //timesheetRepositoryMock.Verify(x => x.Add(It.Is<TimeLog>(y => y.LastName == "")));
+            timesheetRepositoryMock.Verify(x => x.Add(timeLog), Times.Once);
+
+            Assert.True(timeLog.Date > lowerBorderDate);
+            Assert.True(result);
+        }
+
+        [Test]
+        public void TrackTime_Freelancer_ShouldReturnFalse()
+        {
+            // arrange
+            var expectedLastName = "TestUser";
+
+            UserSessions.Sessions.Add(expectedLastName);
+
+            var timeLog = new TimeLog
+            {
+                Date = DateTime.Now.AddDays(-3),
+                WorkHours = 2,
+                LastName = expectedLastName,
+                Comment = Guid.NewGuid().ToString()
+            };
+
+            var timesheetRepositoryMock = new Mock<ITimesheetRepository>();
+
+            var service = new TimesheetService(timesheetRepositoryMock.Object);
+            // act
+
+            var result = service.TrackTime(timeLog);
+
+            // assert
+            var lowerBorderDate = DateTime.Now.AddDays(-2);
+
+            Assert.False(timeLog.Date > lowerBorderDate);
+            Assert.False(result);
         }
     }
 }

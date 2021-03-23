@@ -9,7 +9,6 @@ namespace Timesheet.Tests
 {
     class ReportServiceTests
     {
-        [Test]
         [TestCase("Иванов", 70000, 8750)] // (8+8+4)/160 * 70000
         [TestCase("Петров", 70000, 8750)] // (8+8+4)/160 * 70000
         [TestCase("Сидоров", 1000, 20000)] // (8+8+4) * 1000 
@@ -71,7 +70,6 @@ namespace Timesheet.Tests
             Assert.AreEqual(expectedTotalHours, result.TotalHours);
         }
 
-        [Test]
         [TestCase("Иванов", 60000, 106000)]// ставка за час = 60000 / 160 = 375; 35 * 8 * 375 + 1000 (где 1000 бонус руководителей за переработку, внезависимости от переработанных часов)
         [TestCase("Петров", 60000, 105750)]// ставка за час = 60000 / 160 = 375; 35 * 8 * 375 + 375 * 1 * 2  (у сотрудников переработанный час в два раза больше оплачивается)
         [TestCase("Сидоров", 1000, 281000)]// ставка за час = 1000; 1000 * 281
@@ -131,7 +129,6 @@ namespace Timesheet.Tests
             Assert.AreEqual(expectedTotalHours, result.TotalHours);
         }
 
-        [Test]
         [TestCase("Иванов")]
         [TestCase("Петров")]
         [TestCase("Сидоров")]
@@ -219,7 +216,6 @@ namespace Timesheet.Tests
             Assert.AreEqual(expectedTotalHours, result.TotalHours);
         }
 
-        [Test]
         [TestCase("Иванов", 70000, 4500)]// 8m / 160m * 70000m + 1000 (у руководителей бонус 1000 за день вне зависимости от переаботанных часов)
         [TestCase("Петров", 70000, 7000)]// 8m / 160m * 70000m + 4m / 160m * 70000m * 2
         [TestCase("Сидоров", 1000, 12000)]// 12m * 1000 = 12000
