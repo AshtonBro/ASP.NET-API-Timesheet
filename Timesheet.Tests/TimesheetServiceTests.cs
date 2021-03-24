@@ -17,7 +17,7 @@ namespace Timesheet.Tests
         }
 
         [Test]
-        public void TrackTime_ShouldReturnTrue()
+        public void TrackTime_StaffEmployee_ShouldReturnTrue()
         {
             // arrange
 
@@ -27,7 +27,7 @@ namespace Timesheet.Tests
 
             var timeLog = new TimeLog
             {
-                Date = new DateTime(),
+                Date = DateTime.Now.AddDays(-10),
                 WorkHours = 1,
                 LastName = expectedLastName,
                 Comment = Guid.NewGuid().ToString()
@@ -58,7 +58,7 @@ namespace Timesheet.Tests
         [TestCase(4, "TestUser")]
         [TestCase(4, null)]
         [TestCase(4, "")]
-        public void TrackTime_ShouldReturnFalse(int hours, string lastName)
+        public void TrackTime_StaffEmployee_ShouldReturnFalse(int hours, string lastName)
         {
             // arrange
             var timeLog = new TimeLog
