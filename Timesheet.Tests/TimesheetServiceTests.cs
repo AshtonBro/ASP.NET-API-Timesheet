@@ -17,7 +17,7 @@ namespace Timesheet.Tests
         }
 
         [Test]
-        public void TrackTime_StaffEmployee_ShouldReturnTrue()
+        public void TrackTime_StaffEmployeeTrackPreviousTime_ShouldReturnTrue()
         {
             // arrange
 
@@ -28,6 +28,39 @@ namespace Timesheet.Tests
             var timeLog = new TimeLog
             {
                 Date = DateTime.Now.AddDays(-10),
+                WorkHours = 1,
+                LastName = expectedLastName,
+                Comment = Guid.NewGuid().ToString()
+            };
+
+            var timesheetRepositoryMock = new Mock<ITimesheetRepository>();
+
+            timesheetRepositoryMock
+                .Setup(x => x.Add(timeLog))
+                .Verifiable();
+
+            var service = new TimesheetService(timesheetRepositoryMock.Object);
+            // act
+
+            var result = service.TrackTime(timeLog);
+
+            // assert
+            timesheetRepositoryMock.Verify(x => x.Add(timeLog), Times.Once);
+            Assert.IsTrue(result);
+        }
+
+        [Test]
+        public void TrackTime_StaffEmployee_ShouldReturnTrue()
+        {
+            // arrange
+
+            var expectedLastName = "TestUser";
+
+            UserSessions.Sessions.Add(expectedLastName);
+
+            var timeLog = new TimeLog
+            {
+                Date = DateTime.Now,
                 WorkHours = 1,
                 LastName = expectedLastName,
                 Comment = Guid.NewGuid().ToString()
@@ -144,7 +177,7 @@ namespace Timesheet.Tests
             var lowerBorderDate = DateTime.Now.AddDays(-2);
 
             Assert.False(timeLog.Date > lowerBorderDate);
-            Assert.False(result);
+            Assert.IsFalse(result);
         }
     }
 }
