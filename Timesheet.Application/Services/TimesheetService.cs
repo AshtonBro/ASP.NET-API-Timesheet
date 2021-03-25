@@ -24,16 +24,18 @@ namespace Timesheet.Application.Services
 
 
             var employee = _employeeRepository.GetEmployee(timeLog.LastName);
-            isValid = UserSessions.Sessions.Contains(timeLog.LastName) && isValid;
 
-            if (!isValid)
+            if (!isValid || employee == null)
             {
                 return false;
             }
 
-            if (DateTime.Now.AddDays(-2) > timeLog.Date)
+            if (employee is FreelancerEmployee)
             {
-                return false;
+                if (DateTime.Now.AddDays(-2) > timeLog.Date)
+                {
+                    return false;
+                }
             }
 
             _timesheetRepository.Add(timeLog);
