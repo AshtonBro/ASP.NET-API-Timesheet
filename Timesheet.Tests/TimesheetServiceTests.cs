@@ -49,6 +49,11 @@ namespace Timesheet.Tests
                 .Setup(x => x.Add(timeLog))
                 .Verifiable();
 
+            _employeeRepositoryMock
+              .Setup(x => x.GetEmployee(expectedLastName))
+              .Returns(() => new StaffEmployee(expectedLastName, 0m))
+              .Verifiable();
+
             // act
             var result = _service.TrackTime(timeLog, expectedLastName);
 
@@ -77,6 +82,11 @@ namespace Timesheet.Tests
                 .Setup(x => x.Add(timeLog))
                 .Verifiable();
 
+            _employeeRepositoryMock
+             .Setup(x => x.GetEmployee(expectedLastName))
+             .Returns(() => new StaffEmployee(expectedLastName, 0m))
+             .Verifiable();
+
             // act
             var result = _service.TrackTime(timeLog, expectedLastName);
 
@@ -94,7 +104,7 @@ namespace Timesheet.Tests
         [TestCase(4, "TestUser")]
         [TestCase(4, null)]
         [TestCase(4, "")]
-        public void TrackTime_StaffEmployee_ShouldReturnFalse(int hours, string lastName)
+        public void TrackTime_ShouldReturnFalse(int hours, string lastName)
         {
             // arrange
             var timeLog = new TimeLog
@@ -107,6 +117,11 @@ namespace Timesheet.Tests
             _timesheetRepositoryMock
                 .Setup(x => x.Add(timeLog))
                 .Verifiable();
+
+            _employeeRepositoryMock
+               .Setup(x => x.GetEmployee(lastName))
+               .Returns(() => null)
+               .Verifiable();
 
             // act
             var result = _service.TrackTime(timeLog, timeLog.LastName);
@@ -131,6 +146,11 @@ namespace Timesheet.Tests
                 LastName = expectedLastName,
                 Comment = Guid.NewGuid().ToString()
             };
+
+            _employeeRepositoryMock
+                .Setup(x => x.GetEmployee(expectedLastName))
+                .Returns(() => new FreelancerEmployee(expectedLastName, 0m))
+                .Verifiable();
 
             // act
             var result = _service.TrackTime(timeLog, expectedLastName);
@@ -159,6 +179,11 @@ namespace Timesheet.Tests
                 LastName = expectedLastName,
                 Comment = Guid.NewGuid().ToString()
             };
+
+            _employeeRepositoryMock
+               .Setup(x => x.GetEmployee(expectedLastName))
+               .Returns(() => new FreelancerEmployee(expectedLastName, 0m))
+               .Verifiable();
 
             // act
             var result = _service.TrackTime(timeLog, expectedLastName);
