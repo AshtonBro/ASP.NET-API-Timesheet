@@ -22,7 +22,6 @@ namespace Timesheet.Tests
             _service = new TimesheetService(_timesheetRepositoryMock.Object, _employeeRepositoryMock.Object);
         }
 
-
         [SetUp]
         public void SetUp()
         {
@@ -45,10 +44,6 @@ namespace Timesheet.Tests
                 Comment = Guid.NewGuid().ToString()
             };
 
-            _timesheetRepositoryMock
-                .Setup(x => x.Add(timeLog))
-                .Verifiable();
-
             _employeeRepositoryMock
               .Setup(x => x.GetEmployee(expectedLastName))
               .Returns(() => new StaffEmployee(expectedLastName, 0m))
@@ -58,6 +53,7 @@ namespace Timesheet.Tests
             var result = _service.TrackTime(timeLog, expectedLastName);
 
             // assert
+            _employeeRepositoryMock.VerifyAll();
             _timesheetRepositoryMock.Verify(x => x.Add(timeLog), Times.Once);
             Assert.IsTrue(result);
         }
@@ -79,8 +75,7 @@ namespace Timesheet.Tests
             };
 
             _timesheetRepositoryMock
-                .Setup(x => x.Add(timeLog))
-                .Verifiable();
+                .Setup(x => x.Add(timeLog));
 
             _employeeRepositoryMock
              .Setup(x => x.GetEmployee(expectedLastName))
@@ -91,6 +86,7 @@ namespace Timesheet.Tests
             var result = _service.TrackTime(timeLog, expectedLastName);
 
             // assert
+            _employeeRepositoryMock.VerifyAll();
             _timesheetRepositoryMock.Verify(x => x.Add(timeLog), Times.Once);
             Assert.IsTrue(result);
         }
@@ -114,10 +110,6 @@ namespace Timesheet.Tests
                 LastName = lastName
             };
 
-            _timesheetRepositoryMock
-                .Setup(x => x.Add(timeLog))
-                .Verifiable();
-
             _employeeRepositoryMock
                .Setup(x => x.GetEmployee(lastName))
                .Returns(() => null)
@@ -127,6 +119,7 @@ namespace Timesheet.Tests
             var result = _service.TrackTime(timeLog, timeLog.LastName);
 
             // assert
+            _employeeRepositoryMock.VerifyAll();
             _timesheetRepositoryMock.Verify(x => x.Add(timeLog), Times.Never);
             Assert.IsFalse(result);
         }
@@ -158,6 +151,7 @@ namespace Timesheet.Tests
             // assert
             var lowerBorderDate = DateTime.Now.AddDays(-2);
 
+            _employeeRepositoryMock.VerifyAll();
             _timesheetRepositoryMock.Verify(x => x.Add(timeLog), Times.Once);
 
             Assert.True(timeLog.Date > lowerBorderDate);
@@ -189,10 +183,10 @@ namespace Timesheet.Tests
             var result = _service.TrackTime(timeLog, expectedLastName);
 
             // assert
-            var lowerBorderDate = DateTime.Now.AddDays(-2);
-
-            Assert.False(timeLog.Date > lowerBorderDate);
             Assert.IsFalse(result);
+
+            _employeeRepositoryMock.VerifyAll();
+            _timesheetRepositoryMock.Verify(x => x.Add(timeLog), Times.Never);
         }
     }
 }
