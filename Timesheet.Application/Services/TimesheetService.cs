@@ -8,18 +8,22 @@ namespace Timesheet.Application.Services
     public class TimesheetService : ITimesheetService
     {
         private readonly ITimesheetRepository _timesheetRepository;
+        private readonly IEmployeeRepository _employeeRepository;
 
-        public TimesheetService(ITimesheetRepository timesheetRepository)
+        public TimesheetService(ITimesheetRepository timesheetRepository, IEmployeeRepository employeeRepository)
         {
             _timesheetRepository = timesheetRepository;
+            _employeeRepository = employeeRepository;
         }
 
-        public bool TrackTime(TimeLog timeLog)
+        public bool TrackTime(TimeLog timeLog, string lastName)
         {
             bool isValid = timeLog.WorkHours > 0
                 && timeLog.WorkHours <= 24 
                 && !string.IsNullOrWhiteSpace(timeLog.LastName);
 
+
+            var employee = _employeeRepository.GetEmployee(timeLog.LastName);
             isValid = UserSessions.Sessions.Contains(timeLog.LastName) && isValid;
 
             if (!isValid)
