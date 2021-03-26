@@ -91,6 +91,68 @@ namespace Timesheet.Tests
             Assert.IsTrue(result);
         }
 
+        public void TrackTime_ChiefEmployee_ShouldReturnTrue()
+        {
+            // arrange
+            var expectedLastName = "TestUser";
+
+            UserSessions.Sessions.Add(expectedLastName);
+
+            var timeLog = new TimeLog
+            {
+                Date = DateTime.Now,
+                WorkHours = 1,
+                LastName = expectedLastName,
+                Comment = Guid.NewGuid().ToString()
+            };
+
+            _timesheetRepositoryMock
+                .Setup(x => x.Add(timeLog));
+
+            _employeeRepositoryMock
+             .Setup(x => x.GetEmployee(expectedLastName))
+             .Returns(() => new ChiefEmployee(expectedLastName, 0m, 0m))
+             .Verifiable();
+
+            // act
+            var result = _service.TrackTime(timeLog, expectedLastName);
+
+            // assert
+            _employeeRepositoryMock.VerifyAll();
+            _timesheetRepositoryMock.Verify(x => x.Add(timeLog), Times.Once);
+            Assert.IsTrue(result);
+        }
+
+        public void TrackTime_StaffEmployeeTriesAddWrongLastName_ShouldReturnFalse()
+        {
+            // arrange
+            var expectedLastName = "TestUser";
+
+            UserSessions.Sessions.Add(expectedLastName);
+
+            var timeLog = new TimeLog
+            {
+                Date = DateTime.Now,
+                WorkHours = 1,
+                LastName = Guid.NewGuid().ToString(),
+                Comment = Guid.NewGuid().ToString()
+            };
+
+            _employeeRepositoryMock
+             .Setup(x => x.GetEmployee(expectedLastName))
+             .Returns(() => new StaffEmployee(expectedLastName, 0m))
+             .Verifiable();
+
+            // act
+            var result = _service.TrackTime(timeLog, expectedLastName);
+
+            // assert
+            _employeeRepositoryMock.VerifyAll();
+            _timesheetRepositoryMock.Verify(x => x.Add(timeLog), Times.Never);
+            Assert.IsFalse(result);
+        }
+
+
         [TestCase(25, "TestUser")]
         [TestCase(25, null)]
         [TestCase(25, "")]

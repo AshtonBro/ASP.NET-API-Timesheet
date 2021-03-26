@@ -37,6 +37,14 @@ namespace Timesheet.Application.Services
                 }
             }
 
+            if(employee is FreelancerEmployee || employee is StaffEmployee)
+            {
+                if (timeLog.LastName != lastName)
+                {
+                    return false;
+                }
+            }
+
             _timesheetRepository.Add(timeLog);
 
             return true;
